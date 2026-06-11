@@ -827,6 +827,91 @@ footer.wp-block-template-part a:hover { color: var(--spk-gold) !important; }
    10 · PAGE-SPECIFIC FIXES
    ------------------------------------------------------------ */
 
+/* ACCORDIONS / FAQ BOXES — site-wide, covers every common
+   accordion widget (Elementor classic + nested, Spectra,
+   Kadence, Essential Addons, Easy Accordion, Yoast FAQ,
+   details/summary). `html body` prefix outranks plugin skins.
+   TO CHANGE THE COLOR: edit the three marked values.          */
+
+/* The box itself */
+html body .elementor-accordion .elementor-accordion-item,
+html body .e-n-accordion-item,
+html body .elementor-toggle .elementor-toggle-item,
+html body .uagb-faq-item, html body .wp-block-uagb-faq .uagb-faq-child__outer-wrap,
+html body .kt-accordion-pane,
+html body .eael-accordion-list,
+html body .sp-easy-accordion .ea-card,
+html body .schema-faq-section,
+html body .accordion-item, html body .faq-item,
+html body .wp-block-details, html body details {
+  background: #1a1a1a !important;            /* ← box fill        */
+  border: 1px solid #2c2c2e !important;      /* ← box outline     */
+  border-left: 3px solid var(--spk-gold) !important; /* ← accent  */
+  border-radius: 0 !important;
+  margin-bottom: 12px !important;
+  overflow: hidden !important;
+}
+
+/* The question row (title bar) — kill its white background */
+html body .elementor-accordion .elementor-tab-title,
+html body .e-n-accordion-item-title,
+html body .elementor-toggle .elementor-tab-title,
+html body .uagb-faq-questions-button, html body .uagb-question,
+html body .kt-blocks-accordion-header,
+html body .eael-accordion-header,
+html body .sp-easy-accordion .ea-header a,
+html body .schema-faq-question,
+html body .accordion-header, html body .accordion-title,
+html body summary {
+  background: transparent !important;
+  color: var(--spk-ink) !important;
+  font-weight: 600 !important;
+  border: none !important;
+  padding: 16px 18px !important;
+  cursor: pointer !important;
+}
+
+/* Question row when open or hovered */
+html body .elementor-accordion .elementor-tab-title.elementor-active,
+html body .elementor-accordion .elementor-tab-title:hover,
+html body .e-n-accordion-item[open] .e-n-accordion-item-title,
+html body .uagb-faq-item.uagb-faq-item-active .uagb-question,
+html body .kt-blocks-accordion-header.kt-accordion-panel-active,
+html body summary:hover, html body details[open] summary {
+  background: transparent !important;
+  color: var(--spk-gold) !important;
+}
+html body .elementor-accordion .elementor-tab-title a,
+html body .elementor-accordion-icon,
+html body .e-n-accordion-item-title-icon,
+html body .uagb-icon svg, html body .e-n-accordion-item-title svg {
+  color: inherit !important;
+  fill: currentColor !important;
+}
+
+/* The answer panel — also often painted white by the plugin */
+html body .elementor-accordion .elementor-tab-content,
+html body .e-n-accordion-item > .e-con,
+html body .e-n-accordion-item-content,
+html body .elementor-toggle .elementor-tab-content,
+html body .uagb-faq-content,
+html body .kt-accordion-panel-inner,
+html body .eael-accordion-content,
+html body .sp-easy-accordion .ea-body,
+html body .schema-faq-answer,
+html body .accordion-content, html body .accordion-body,
+html body .wp-block-details > *:not(summary) {
+  background: transparent !important;
+  color: var(--spk-text) !important;
+  border: none !important;
+  padding: 0 18px 16px !important;
+}
+html body .elementor-accordion .elementor-tab-content p,
+html body .uagb-faq-content p,
+html body .e-n-accordion-item-content p {
+  color: var(--spk-text) !important;
+}
+
 /* FAQ page — box colors.
    TO CHANGE THE COLOR: edit the three values below.
    background  = the box fill
