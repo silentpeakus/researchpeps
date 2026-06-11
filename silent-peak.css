@@ -15,7 +15,7 @@
    · Corners: razor-sharp (0px) = premium / scientific
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 /* ------------------------------------------------------------
    0 · DESIGN TOKENS — change colors/fonts here, nowhere else
@@ -31,7 +31,10 @@
   --sp-text:       #aeaeb2;   /* body copy */
   --sp-muted:      #7a7a80;   /* captions, meta */
   --sp-danger:     #c25e5e;
-  --sp-display:    'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+  /* ONE font family everywhere — Inter (clean, precise, made
+     for screen readability). Headings differ by weight/case
+     only, which keeps the whole site looking like one system. */
+  --sp-display:    'Inter', 'Helvetica Neue', Arial, sans-serif;
   --sp-body:       'Inter', 'Helvetica Neue', Arial, sans-serif;
   --sp-ease:       0.25s cubic-bezier(0.22, 1, 0.36, 1);
   --sp-shadow:     0 8px 32px rgba(0, 0, 0, 0.45);
@@ -80,8 +83,30 @@ select:focus-visible, textarea:focus-visible {
 }
 
 /* ------------------------------------------------------------
-   2 · TYPOGRAPHY — one system, everywhere
+   2 · TYPOGRAPHY — one font family, everywhere
    ------------------------------------------------------------ */
+
+/* Catch-all: force Inter on every element on the page, no
+   matter what the theme, Elementor, or any plugin injects */
+body, body * {
+  font-family: var(--sp-body) !important;
+}
+
+/* …except icon fonts, which render glyphs from their own
+   families and would turn into broken squares otherwise */
+.star-rating, .star-rating span, .star-rating::before, .star-rating span::before {
+  font-family: star !important;
+}
+.dashicons, .dashicons-before::before {
+  font-family: dashicons !important;
+}
+[class^="eicon"], [class*=" eicon"] {
+  font-family: eicons !important;
+}
+.fa, .fas, .far, .fab, [class^="fa-"], [class*=" fa-"] {
+  font-family: "Font Awesome 5 Free", "Font Awesome 5 Brands", FontAwesome !important;
+}
+.ahfb-svg-iconset, .ast-icon { font-family: inherit; }
 h1, h2, h3, h4, h5, h6,
 .wp-block-heading,
 .entry-title, .page-title, .product_title,
