@@ -213,6 +213,78 @@ button.ast-mobile-menu-trigger,
 }
 
 /* ------------------------------------------------------------
+   3b · HEADER OVERLAP FIX — header must never cover content
+   The theme paints the header fixed/absolute over the page,
+   which hides the top of Cart, Checkout, etc. Force it back
+   into normal document flow.
+   ------------------------------------------------------------ */
+#masthead, .site-header,
+header.wp-block-template-part,
+.elementor-location-header,
+header.elementor-section,
+.ast-primary-header-bar,
+.elementor-sticky--active {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  width: 100% !important;
+  z-index: 100 !important;
+}
+
+/* Astra "transparent header" mode pulls content up underneath
+   the header — neutralize the pull-up on every page */
+.ast-theme-transparent-header #content,
+.ast-theme-transparent-header .site-content,
+.ast-theme-transparent-header #primary {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+body.ast-theme-transparent-header #masthead,
+body.ast-theme-transparent-header .main-header-bar {
+  position: relative !important;
+  background: var(--sp-bg) !important;
+}
+
+/* Negative-margin "hero overlap" effects — reset everywhere */
+.site-main, #content, .entry-content {
+  margin-top: 0 !important;
+  overflow: visible !important;
+}
+
+/* Safety spacer: if any plugin still floats the header, this
+   keeps the first content block clear of it. Harmless when the
+   header is in normal flow. */
+.site-content > .ast-container,
+.wp-site-blocks > main {
+  padding-top: 8px !important;
+}
+
+/* ------------------------------------------------------------
+   3c · CONDENSED PAGE SPACING — tighter top-of-page chrome
+   ------------------------------------------------------------ */
+.entry-header, .ast-archive-description, .page-header {
+  padding: 12px 0 4px !important;
+  margin: 0 !important;
+}
+
+/* Inner-page titles (Cart, Checkout, My Account…) — smaller and
+   tighter than the homepage hero scale */
+.woocommerce-cart .entry-title,
+.woocommerce-checkout .entry-title,
+.woocommerce-account .entry-title,
+.page .entry-title {
+  font-size: clamp(22px, 3vw, 32px) !important;
+  margin: 18px 0 14px !important;
+}
+
+/* First block of content shouldn't add its own big top gap */
+.entry-content > *:first-child,
+.entry-content > .wp-block-group:first-child {
+  margin-top: 0 !important;
+  padding-top: 12px !important;
+}
+
+/* ------------------------------------------------------------
    4 · BUTTONS — black, sharp, gold on hover
    ------------------------------------------------------------ */
 .wp-block-button__link,
@@ -600,6 +672,14 @@ table.shop_table td.product-name a { color: var(--sp-ink) !important; }
 table.shop_table td.product-name a:hover { color: var(--sp-gold) !important; }
 table.shop_table .amount { color: var(--sp-ink) !important; }
 .woocommerce .order-total .amount { color: var(--sp-gold) !important; }
+
+/* Compact cart layout — tighter rows so the page fits without
+   scrolling past dead space */
+.woocommerce-cart table.shop_table th { padding: 10px 14px !important; }
+.woocommerce-cart table.shop_table td { padding: 10px 14px !important; }
+.woocommerce-cart table.cart img { width: 56px !important; height: auto !important; }
+.woocommerce-cart .cart_totals { padding: 18px !important; }
+.woocommerce-cart .cart_totals h2 { font-size: 16px !important; margin: 0 0 12px !important; }
 
 .woocommerce a.remove { color: var(--sp-muted) !important; background: transparent !important; }
 .woocommerce a.remove:hover { color: var(--sp-danger) !important; background: transparent !important; }
