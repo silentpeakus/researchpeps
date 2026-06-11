@@ -827,6 +827,55 @@ footer.wp-block-template-part a:hover { color: var(--sp-gold) !important; }
    10 · PAGE-SPECIFIC FIXES
    ------------------------------------------------------------ */
 
+/* FAQ page — box colors.
+   TO CHANGE THE COLOR: edit the three values below.
+   background  = the box fill
+   border      = the box outline
+   accent      = the left edge / question highlight            */
+.page-id-171 .wp-block-group.has-background,
+.page-id-171 .wp-block-group:not(:first-child),
+.page-id-171 .elementor-widget-text-editor,
+.page-id-171 .elementor-accordion .elementor-accordion-item,
+.page-id-171 .elementor-toggle .elementor-toggle-item,
+.page-id-171 .wp-block-details,
+.page-id-171 details {
+  background: #1a1a1a !important;            /* ← box fill        */
+  border: 1px solid #2c2c2e !important;      /* ← box outline     */
+  border-left: 3px solid var(--sp-gold) !important; /* ← accent   */
+  border-radius: 0 !important;
+  padding: 18px 20px !important;
+  margin-bottom: 14px !important;
+}
+
+/* Question row (accordion/toggle titles or summary lines) */
+.page-id-171 .elementor-accordion .elementor-tab-title,
+.page-id-171 .elementor-toggle .elementor-tab-title,
+.page-id-171 summary {
+  background: transparent !important;
+  color: var(--sp-ink) !important;
+  border: none !important;
+  padding: 4px 0 !important;
+  cursor: pointer;
+}
+.page-id-171 .elementor-accordion .elementor-tab-title.elementor-active,
+.page-id-171 .elementor-tab-title:hover,
+.page-id-171 summary:hover {
+  color: var(--sp-gold) !important;
+}
+.page-id-171 .elementor-accordion .elementor-tab-title .elementor-accordion-icon,
+.page-id-171 .elementor-tab-title a {
+  color: inherit !important;
+}
+
+/* Answer area inside accordions */
+.page-id-171 .elementor-accordion .elementor-tab-content,
+.page-id-171 .elementor-toggle .elementor-tab-content {
+  background: transparent !important;
+  color: var(--sp-text) !important;
+  border: none !important;
+  padding: 10px 0 0 !important;
+}
+
 /* FAQ page — tighten heading/answer spacing */
 .page-id-171 h6 {
   font-size: 17px !important;
