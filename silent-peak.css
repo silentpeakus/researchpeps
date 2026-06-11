@@ -1,18 +1,17 @@
 /* ============================================================
-   SILENT PEAK — CONSOLIDATED THEME SHEET (v1.0)
-   silentpeak.us · Astra + WooCommerce
+   SILENT PEAK LABS — PREMIUM DARK DESIGN SYSTEM (v2.0)
+   silentpeak.us · WordPress + Elementor + WooCommerce
    ------------------------------------------------------------
    INSTALL: Appearance → Customize → Additional CSS
    IMPORTANT: DELETE everything currently in Additional CSS
-   first, then paste ONLY this file. This replaces all previous
-   sheets (Monochrome Luxe, Obsidian/Gold, Biotech preset, blue
-   Astra revamp, and every patch).
+   first, then paste ONLY this file.
    ------------------------------------------------------------
    Design language:
-   · Canvas:  deep matte charcoal, layered dark surfaces
-   · Accent:  champagne gold — hairlines and hovers, never loud
-   · Type:    Montserrat (display) + Inter (body)
-   · Corners: razor-sharp (0px) = premium / scientific
+   · Canvas:  #121212 deep matte charcoal — never pure black
+   · Cards:   #1A1A1A surfaces framed by #2C2C2E hairlines
+   · Accent:  pure white — high contrast, monochrome, no color
+   · Type:    Inter — structured headings, legible body
+   · Corners: razor-sharp (0px) = flat, structured, premium
    ============================================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
@@ -21,15 +20,16 @@
    0 · DESIGN TOKENS — change colors/fonts here, nowhere else
    ------------------------------------------------------------ */
 :root {
-  --spk-bg:         #121212;   /* page canvas */
-  --spk-surface:    #1a1a1a;   /* cards, panels */
-  --spk-surface-2:  #202024;   /* hover / elevated */
-  --spk-border:     #2c2c2e;   /* hairline dividers */
-  --spk-gold:       #c7a35f;   /* signature accent */
-  --spk-gold-soft:  rgba(199, 163, 95, 0.35);
-  --spk-ink:        #ffffff;   /* headings, titles */
-  --spk-text:       #aeaeb2;   /* body copy */
-  --spk-muted:      #7a7a80;   /* captions, meta */
+  --spk-bg:         #121212;   /* page canvas — deep matte charcoal */
+  --spk-surface:    #1a1a1a;   /* cards, panels, containers */
+  --spk-surface-2:  #202024;   /* hover / elevated surfaces */
+  --spk-border:     #2c2c2e;   /* razor-thin hairline dividers */
+  --spk-accent:       #ffffff; /* primary accent — pure white */
+  --spk-accent-soft:  rgba(255, 255, 255, 0.35);
+  --spk-gold:       #c7a35f;   /* brand gold — header logo only */
+  --spk-ink:        #ffffff;   /* headings, titles, main actions */
+  --spk-text:       #8e8e93;   /* body copy — legible mid-gray */
+  --spk-muted:      #6e6e73;   /* captions, metadata */
   --spk-danger:     #c25e5e;
 
   /* Header is the one LIGHT element — white bar, gold logo,
@@ -49,6 +49,17 @@
 /* ------------------------------------------------------------
    1 · GLOBAL BASE
    ------------------------------------------------------------ */
+html { scroll-behavior: smooth; }
+
+/* Utility: add class "spk-flat" to any section/widget to strip
+   shadows, rounding, and gradients — flat, sharp, structured */
+.spk-flat, .spk-flat * {
+  box-shadow: none !important;
+  text-shadow: none !important;
+  border-radius: 0 !important;
+  background-image: none !important;
+}
+
 body,
 body.woocommerce,
 body.woocommerce-page,
@@ -71,20 +82,20 @@ p, .wp-block-paragraph, .entry-content li {
   line-height: 1.7 !important;
 }
 
-a { color: var(--spk-gold); text-decoration: none; transition: color var(--spk-ease); }
+a { color: var(--spk-accent); text-decoration: none; transition: color var(--spk-ease); }
 a:hover { color: var(--spk-ink); }
 
-::selection { background: var(--spk-gold); color: #121212; }
+::selection { background: var(--spk-accent); color: #121212; }
 
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: var(--spk-bg); }
 ::-webkit-scrollbar-thumb { background: var(--spk-border); }
-::-webkit-scrollbar-thumb:hover { background: var(--spk-gold); }
+::-webkit-scrollbar-thumb:hover { background: var(--spk-accent); }
 
 /* Accessible focus ring */
 a:focus-visible, button:focus-visible, input:focus-visible,
 select:focus-visible, textarea:focus-visible {
-  outline: 2px solid var(--spk-gold) !important;
+  outline: 2px solid var(--spk-accent) !important;
   outline-offset: 3px !important;
 }
 
@@ -122,11 +133,11 @@ h1, h2, h3, h4, h5, h6,
   font-weight: 700 !important;
   color: var(--spk-ink) !important;
   text-transform: uppercase !important;
-  letter-spacing: 0.1em !important;
-  line-height: 1.25 !important;
+  letter-spacing: -0.01em !important;  /* tight = architectural */
+  line-height: 1.2 !important;
 }
 
-h1 { font-size: clamp(28px, 4.5vw, 48px) !important; letter-spacing: 0.12em !important; }
+h1 { font-size: clamp(28px, 4.5vw, 48px) !important; letter-spacing: -0.015em !important; }
 h2 { font-size: clamp(24px, 3.5vw, 36px) !important; }
 h3 { font-size: clamp(19px, 2.5vw, 26px) !important; }
 h4 { font-size: 17px !important; }
@@ -135,7 +146,7 @@ strong, b { color: var(--spk-ink) !important; font-family: inherit !important; }
 
 /* Gold list markers */
 .entry-content ul li::marker,
-.entry-content ol li::marker { color: var(--spk-gold); }
+.entry-content ol li::marker { color: var(--spk-accent); }
 
 hr, .wp-block-separator {
   border: none !important;
@@ -339,20 +350,21 @@ body.ast-theme-transparent-header .main-header-bar {
 .single_add_to_cart_button,
 .ast-button,
 input[type="submit"], button[type="submit"] {
-  background: #000000 !important;
-  color: #ffffff !important;
-  border: 1px solid #000000 !important;
+  /* Primary action: solid white, stark black text */
+  background: #ffffff !important;
+  color: #000000 !important;
+  border: 1px solid #ffffff !important;
   border-radius: 0 !important;
   font-family: var(--spk-display) !important;
   font-size: 12px !important;
   font-weight: 700 !important;
-  letter-spacing: 0.15em !important;
+  letter-spacing: 0.12em !important;
   text-transform: uppercase !important;
   padding: 14px 30px !important;
   text-shadow: none !important;
   box-shadow: none !important;
   cursor: pointer !important;
-  transition: all var(--spk-ease) !important;
+  transition: transform var(--spk-ease), background var(--spk-ease), color var(--spk-ease), border-color var(--spk-ease) !important;
 }
 .wp-block-button__link:hover,
 .wp-element-button:hover,
@@ -360,21 +372,29 @@ input[type="submit"], button[type="submit"] {
 .woocommerce a.button.alt:hover, .woocommerce button.button.alt:hover,
 .single_add_to_cart_button:hover,
 input[type="submit"]:hover, button[type="submit"]:hover {
-  background: transparent !important;
-  color: var(--spk-gold) !important;
-  border-color: var(--spk-gold) !important;
-  transform: translateY(-2px);
+  /* Subtle high-end hover: slight scale + soft white shift */
+  background: #e6e6e6 !important;
+  color: #000000 !important;
+  border-color: #e6e6e6 !important;
+  transform: scale(1.02);
 }
 
-/* Outline variant (Gutenberg "outline" style) */
-.wp-block-button.is-style-outline .wp-block-button__link {
+/* Secondary button: transparent with a thin white border.
+   Applies to Gutenberg "outline" style and the .spk-btn-secondary
+   utility class (add it to any Elementor button) */
+.wp-block-button.is-style-outline .wp-block-button__link,
+.spk-btn-secondary, .spk-btn-secondary .elementor-button {
   background: transparent !important;
   color: var(--spk-ink) !important;
-  border: 1px solid var(--spk-border) !important;
+  border: 1px solid rgba(255, 255, 255, 0.7) !important;
+  border-radius: 0 !important;
 }
-.wp-block-button.is-style-outline .wp-block-button__link:hover {
-  color: var(--spk-gold) !important;
-  border-color: var(--spk-gold) !important;
+.wp-block-button.is-style-outline .wp-block-button__link:hover,
+.spk-btn-secondary:hover, .spk-btn-secondary .elementor-button:hover {
+  background: #ffffff !important;
+  color: #000000 !important;
+  border-color: #ffffff !important;
+  transform: scale(1.02);
 }
 
 /* ------------------------------------------------------------
@@ -425,7 +445,7 @@ select.orderby,
 }
 .woocommerce ul.products li.product:hover,
 .wp-block-product-template li:hover {
-  border-color: var(--spk-gold) !important;
+  border-color: var(--spk-accent) !important;
   transform: translateY(-4px);
 }
 
@@ -470,7 +490,7 @@ select.orderby,
 
 /* Card category eyebrow */
 .woocommerce ul.products li.product .ast-woo-product-category {
-  color: var(--spk-gold) !important;
+  color: var(--spk-accent) !important;
   font-size: 10px !important;
   font-weight: 600 !important;
   letter-spacing: 0.18em !important;
@@ -485,16 +505,16 @@ select.orderby,
   padding: 12px 16px !important;
 }
 .woocommerce ul.products li.product .added_to_cart {
-  color: var(--spk-gold) !important;
+  color: var(--spk-accent) !important;
   font-size: 12px !important;
   padding: 6px 0 0 !important;
 }
 
 /* Sale badge */
 .woocommerce span.onsale {
-  background: #000000 !important;
-  color: var(--spk-gold) !important;
-  border: 1px solid var(--spk-gold-soft) !important;
+  background: #ffffff !important;
+  color: #000000 !important;
+  border: none !important;
   border-radius: 0 !important;
   font-family: var(--spk-display) !important;
   font-size: 10px !important;
@@ -512,7 +532,7 @@ select.orderby,
 
 /* Star ratings */
 .woocommerce .star-rating,
-.woocommerce .star-rating span::before { color: var(--spk-gold) !important; }
+.woocommerce .star-rating span::before { color: var(--spk-accent) !important; }
 
 /* Breadcrumbs */
 .ast-breadcrumbs-wrapper, .woocommerce .woocommerce-breadcrumb {
@@ -523,7 +543,7 @@ select.orderby,
   text-transform: uppercase !important;
 }
 .woocommerce .woocommerce-breadcrumb a { color: var(--spk-muted) !important; }
-.woocommerce .woocommerce-breadcrumb a:hover { color: var(--spk-gold) !important; }
+.woocommerce .woocommerce-breadcrumb a:hover { color: var(--spk-accent) !important; }
 
 /* Guard against headers/overlays painting over the catalog */
 .page-header, .archive-header {
@@ -543,7 +563,7 @@ select.orderby,
 .woocommerce div.product p.price,
 .woocommerce div.product span.price {
   font-family: var(--spk-display) !important;
-  color: var(--spk-gold) !important;
+  color: var(--spk-accent) !important;
   font-size: 24px !important;
   font-weight: 700 !important;
   letter-spacing: 0.05em !important;
@@ -563,7 +583,7 @@ select.orderby,
 .woocommerce div.product div.images .flex-control-thumbs li img:hover,
 .woocommerce div.product div.images .flex-control-thumbs li img.flex-active {
   opacity: 1;
-  border-color: var(--spk-gold-soft) !important;
+  border-color: var(--spk-accent-soft) !important;
 }
 
 /* Quantity input */
@@ -591,7 +611,7 @@ select.orderby,
   border-top: 1px solid var(--spk-border) !important;
   padding-top: 1.2em !important;
 }
-.woocommerce div.product .product_meta a:hover { color: var(--spk-gold) !important; }
+.woocommerce div.product .product_meta a:hover { color: var(--spk-accent) !important; }
 
 /* Tabs */
 .woocommerce div.product .woocommerce-tabs ul.tabs {
@@ -623,7 +643,7 @@ select.orderby,
 }
 .woocommerce div.product .woocommerce-tabs ul.tabs li.active a {
   color: var(--spk-ink) !important;
-  border-bottom: 2px solid var(--spk-gold) !important;
+  border-bottom: 2px solid var(--spk-accent) !important;
 }
 .woocommerce div.product .woocommerce-tabs .panel {
   background: transparent !important;
@@ -660,7 +680,7 @@ input[type="url"], textarea, select,
 input:focus, textarea:focus, select:focus,
 .woocommerce form .input-text:focus {
   outline: none !important;
-  border-color: var(--spk-gold) !important;
+  border-color: var(--spk-accent) !important;
 }
 ::placeholder { color: var(--spk-muted) !important; opacity: 1; }
 
@@ -683,7 +703,7 @@ label, .woocommerce form .form-row label {
   color: var(--spk-ink) !important;
 }
 .select2-container--default .select2-results__option--highlighted[aria-selected] {
-  background: var(--spk-gold) !important;
+  background: var(--spk-accent) !important;
   color: #121212 !important;
 }
 
@@ -696,7 +716,7 @@ table, table.shop_table {
 }
 table th, table.shop_table th {
   background: var(--spk-bg) !important;
-  color: var(--spk-gold) !important;
+  color: var(--spk-accent) !important;
   font-family: var(--spk-display) !important;
   font-size: 11px !important;
   font-weight: 700 !important;
@@ -712,9 +732,9 @@ table td, table.shop_table td {
   padding: 14px 18px !important;
 }
 table.shop_table td.product-name a { color: var(--spk-ink) !important; }
-table.shop_table td.product-name a:hover { color: var(--spk-gold) !important; }
+table.shop_table td.product-name a:hover { color: var(--spk-accent) !important; }
 table.shop_table .amount { color: var(--spk-ink) !important; }
-.woocommerce .order-total .amount { color: var(--spk-gold) !important; }
+.woocommerce .order-total .amount { color: var(--spk-accent) !important; }
 
 /* Compact cart layout — tighter rows so the page fits without
    scrolling past dead space */
@@ -756,8 +776,8 @@ table.shop_table .amount { color: var(--spk-ink) !important; }
 }
 .woocommerce-MyAccount-navigation ul li.is-active a,
 .woocommerce-MyAccount-navigation ul li a:hover {
-  color: var(--spk-gold) !important;
-  border-left-color: var(--spk-gold) !important;
+  color: var(--spk-accent) !important;
+  border-left-color: var(--spk-accent) !important;
 }
 
 /* ------------------------------------------------------------
@@ -767,11 +787,11 @@ table.shop_table .amount { color: var(--spk-ink) !important; }
 .wc-block-components-notice-banner {
   background: var(--spk-surface) !important;
   border: 1px solid var(--spk-border) !important;
-  border-top: 2px solid var(--spk-gold) !important;
+  border-top: 2px solid var(--spk-accent) !important;
   border-radius: 0 !important;
   color: var(--spk-text) !important;
 }
-.woocommerce-message::before, .woocommerce-info::before { color: var(--spk-gold) !important; }
+.woocommerce-message::before, .woocommerce-info::before { color: var(--spk-accent) !important; }
 .woocommerce-error {
   background: var(--spk-surface) !important;
   border: 1px solid var(--spk-border) !important;
@@ -793,12 +813,12 @@ table.shop_table .amount { color: var(--spk-ink) !important; }
   padding: 8px 14px !important;
 }
 .woocommerce nav.woocommerce-pagination ul li a:hover {
-  border-color: var(--spk-gold) !important;
-  color: var(--spk-gold) !important;
+  border-color: var(--spk-accent) !important;
+  color: var(--spk-accent) !important;
 }
 .woocommerce nav.woocommerce-pagination ul li span.current {
-  background: var(--spk-gold) !important;
-  border-color: var(--spk-gold) !important;
+  background: var(--spk-accent) !important;
+  border-color: var(--spk-accent) !important;
   color: #121212 !important;
 }
 
@@ -815,7 +835,7 @@ footer.wp-block-template-part {
 .site-footer a, #colophon a, .ast-footer-menu .menu-item a,
 footer.wp-block-template-part a { color: var(--spk-muted) !important; }
 .site-footer a:hover, #colophon a:hover,
-footer.wp-block-template-part a:hover { color: var(--spk-gold) !important; }
+footer.wp-block-template-part a:hover { color: var(--spk-accent) !important; }
 .site-footer .widget-title, .ast-footer-overlay .widget-title {
   color: var(--spk-ink) !important;
   font-size: 13px !important;
@@ -846,7 +866,7 @@ html body .accordion-item, html body .faq-item,
 html body .wp-block-details, html body details {
   background: #1a1a1a !important;            /* ← box fill        */
   border: 1px solid #2c2c2e !important;      /* ← box outline     */
-  border-left: 3px solid var(--spk-gold) !important; /* ← accent  */
+  border-left: 3px solid var(--spk-accent) !important; /* ← accent  */
   border-radius: 0 !important;
   margin-bottom: 12px !important;
   overflow: hidden !important;
@@ -879,7 +899,7 @@ html body .uagb-faq-item.uagb-faq-item-active .uagb-question,
 html body .kt-blocks-accordion-header.kt-accordion-panel-active,
 html body summary:hover, html body details[open] summary {
   background: transparent !important;
-  color: var(--spk-gold) !important;
+  color: var(--spk-accent) !important;
 }
 html body .elementor-accordion .elementor-tab-title a,
 html body .elementor-accordion-icon,
@@ -926,7 +946,7 @@ html body .e-n-accordion-item-content p {
 .page-id-171 details {
   background: #1a1a1a !important;            /* ← box fill        */
   border: 1px solid #2c2c2e !important;      /* ← box outline     */
-  border-left: 3px solid var(--spk-gold) !important; /* ← accent   */
+  border-left: 3px solid var(--spk-accent) !important; /* ← accent   */
   border-radius: 0 !important;
   padding: 18px 20px !important;
   margin-bottom: 14px !important;
@@ -945,7 +965,7 @@ html body .e-n-accordion-item-content p {
 .page-id-171 .elementor-accordion .elementor-tab-title.elementor-active,
 .page-id-171 .elementor-tab-title:hover,
 .page-id-171 summary:hover {
-  color: var(--spk-gold) !important;
+  color: var(--spk-accent) !important;
 }
 .page-id-171 .elementor-accordion .elementor-tab-title .elementor-accordion-icon,
 .page-id-171 .elementor-tab-title a {
@@ -968,7 +988,7 @@ html body .e-n-accordion-item-content p {
   padding-bottom: 6px !important;
   border-bottom: 1px solid var(--spk-border) !important;
 }
-.page-id-171 h4 { color: var(--spk-gold) !important; font-size: 15px !important; }
+.page-id-171 h4 { color: var(--spk-accent) !important; font-size: 15px !important; }
 .page-id-171 p { margin-bottom: 10px !important; }
 
 /* ------------------------------------------------------------
@@ -985,7 +1005,7 @@ img, video, iframe, table { max-width: 100% !important; }
 /* Touch devices: kill hover-lift effects (they make taps feel
    laggy) and use a subtle gold tap flash instead */
 @media (hover: none) {
-  a, button { -webkit-tap-highlight-color: rgba(199, 163, 95, 0.25); }
+  a, button { -webkit-tap-highlight-color: rgba(255, 255, 255, 0.18); }
   .woocommerce ul.products li.product:hover,
   .wp-block-button__link:hover,
   .woocommerce a.button:hover,
@@ -1016,9 +1036,9 @@ img, video, iframe, table { max-width: 100% !important; }
 
   /* Headings: shrink and relax the wide letter-spacing so
      uppercase titles don't wrap awkwardly on narrow screens */
-  h1 { font-size: 26px !important; letter-spacing: 0.06em !important; }
-  h2 { font-size: 21px !important; letter-spacing: 0.06em !important; }
-  h3 { font-size: 18px !important; letter-spacing: 0.05em !important; }
+  h1 { font-size: 26px !important; letter-spacing: -0.01em !important; }
+  h2 { font-size: 21px !important; letter-spacing: -0.01em !important; }
+  h3 { font-size: 18px !important; letter-spacing: -0.01em !important; }
 
   /* Compact header: smaller logo, tight bar, big hamburger */
   .ast-site-title, .site-title a, .wp-block-site-title a { font-size: 16px !important; }
