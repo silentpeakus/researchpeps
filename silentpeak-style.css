@@ -1,0 +1,373 @@
+/* ============================================================
+   SILENT PEAK — MONOCHROME LUXE
+   Black & white, layered shadows, expensive minimalism
+   Astra + WooCommerce — paste into Customizer > Additional CSS
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --sp-ink:        #0a0a0a;   /* near-black — primary */
+  --sp-black:      #000000;
+  --sp-dark:       #111111;   /* dark sections / footer */
+  --sp-bg:         #ffffff;
+  --sp-gray:       #f7f7f7;   /* light section background */
+  --sp-border:     #ebebeb;
+  --sp-muted:      #6b6b6b;
+  --sp-display:    'Bebas Neue', sans-serif;
+  --sp-body:       'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --sp-radius:     2px;       /* near-sharp corners read as premium */
+  --sp-pill:       9999px;
+  --sp-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Layered shadow system — this is what makes it look expensive */
+  --sp-shadow-sm:  0 1px 2px rgba(0,0,0,0.04), 0 2px 8px rgba(0,0,0,0.04);
+  --sp-shadow-md:  0 2px 4px rgba(0,0,0,0.05), 0 8px 24px rgba(0,0,0,0.08);
+  --sp-shadow-lg:  0 4px 8px rgba(0,0,0,0.06), 0 16px 48px rgba(0,0,0,0.14);
+  --sp-shadow-btn: 0 2px 6px rgba(0,0,0,0.25);
+}
+
+/* --- BASE --- */
+body, body.woocommerce, body.woocommerce-page {
+  background: var(--sp-bg) !important;
+  color: var(--sp-ink) !important;
+  font-family: var(--sp-body) !important;
+  font-size: 15px !important;
+  line-height: 1.7 !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3,
+.woocommerce-products-header__title,
+.woocommerce-loop-product__title,
+.product_title {
+  font-family: var(--sp-display) !important;
+  font-weight: 400 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  color: var(--sp-ink) !important;
+  line-height: 1.05 !important;
+}
+h1, .woocommerce-products-header__title { font-size: clamp(40px, 6vw, 72px) !important; }
+h2 { font-size: clamp(30px, 4vw, 48px) !important; }
+h3 { font-size: clamp(22px, 3vw, 30px) !important; }
+
+a { color: var(--sp-ink); text-decoration: none; transition: opacity var(--sp-transition); }
+a:hover { color: var(--sp-black); opacity: 0.65; }
+
+/* ============================================================
+   HEADER — white bar, black text, understated
+   ============================================================ */
+#masthead, .site-header, .ast-primary-header-bar, .main-header-bar {
+  background: var(--sp-bg) !important;
+  border-bottom: 1px solid var(--sp-border) !important;
+  box-shadow: var(--sp-shadow-sm) !important;
+}
+.ast-site-title, .site-title a, .site-title {
+  font-family: var(--sp-display) !important;
+  font-size: 26px !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: var(--sp-ink) !important;
+}
+.ast-main-navigation .menu-item > a,
+.ast-nav-menu > li > a {
+  color: var(--sp-ink) !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  padding: 10px 14px !important;
+  transition: opacity var(--sp-transition) !important;
+}
+.ast-main-navigation .menu-item > a:hover { opacity: 0.55 !important; background: transparent !important; }
+.ast-main-navigation .current-menu-item > a {
+  opacity: 1 !important;
+  box-shadow: inset 0 -2px 0 var(--sp-black) !important;
+}
+/* Dropdowns */
+.ast-main-navigation .sub-menu {
+  background: var(--sp-bg) !important;
+  border: 1px solid var(--sp-border) !important;
+  box-shadow: var(--sp-shadow-lg) !important;
+  border-radius: var(--sp-radius) !important;
+}
+.ast-main-navigation .sub-menu .menu-item > a { color: var(--sp-ink) !important; }
+.ast-main-navigation .sub-menu .menu-item > a:hover {
+  background: var(--sp-gray) !important;
+  opacity: 1 !important;
+}
+/* Cart count badge */
+.ast-cart-menu-wrap .count, .ast-header-woo-cart .count {
+  background: var(--sp-black) !important;
+  color: #fff !important;
+  border-radius: 50% !important;
+  font-weight: 700 !important;
+}
+.ast-header-woo-cart svg, .ast-cart-menu-wrap svg { fill: var(--sp-ink) !important; }
+
+/* ============================================================
+   BUTTONS — solid black, lift on hover
+   ============================================================ */
+.woocommerce a.button, .woocommerce button.button, .woocommerce input.button,
+.woocommerce .checkout-button, .woocommerce #respond input#submit,
+.ast-button, .wp-block-button__link,
+input[type="submit"], button[type="submit"] {
+  background: var(--sp-black) !important;
+  color: #fff !important;
+  border: 1px solid var(--sp-black) !important;
+  border-radius: var(--sp-radius) !important;
+  font-family: var(--sp-body) !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.12em !important;
+  padding: 14px 32px !important;
+  cursor: pointer !important;
+  box-shadow: var(--sp-shadow-btn) !important;
+  transition: all var(--sp-transition) !important;
+}
+.woocommerce a.button:hover, .woocommerce button.button:hover,
+input[type="submit"]:hover, button[type="submit"]:hover,
+.wp-block-button__link:hover {
+  background: #fff !important;
+  color: var(--sp-black) !important;
+  border-color: var(--sp-black) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: var(--sp-shadow-md) !important;
+}
+
+/* ============================================================
+   PRODUCT GRID & CARDS — floating white cards on soft gray
+   ============================================================ */
+.woocommerce ul.products, .woocommerce-page ul.products {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)) !important;
+  gap: 32px !important;
+  list-style: none !important;
+  margin: 0 !important; padding: 0 !important;
+}
+.woocommerce ul.products li.product {
+  background: #fff !important;
+  border: 1px solid var(--sp-border) !important;
+  border-radius: var(--sp-radius) !important;
+  padding: 0 !important; margin: 0 !important;
+  display: flex !important; flex-direction: column !important;
+  text-align: center !important;
+  overflow: hidden !important;
+  box-shadow: var(--sp-shadow-sm) !important;
+  transition: box-shadow var(--sp-transition), transform var(--sp-transition) !important;
+}
+.woocommerce ul.products li.product:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: var(--sp-shadow-lg) !important;
+  border-color: #ddd !important;
+}
+.woocommerce ul.products li.product img {
+  width: 100% !important;
+  height: 240px !important;
+  object-fit: contain !important;
+  background: #fff !important;
+  padding: 20px !important;
+  display: block !important;
+  transition: transform var(--sp-transition) !important;
+}
+.woocommerce ul.products li.product:hover img { transform: scale(1.03) !important; }
+.woocommerce ul.products li.product .ast-woo-product-category {
+  color: var(--sp-muted) !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase !important;
+}
+.woocommerce ul.products li.product .woocommerce-loop-product__title {
+  font-size: 22px !important;
+  margin: 4px 14px 6px !important;
+  color: var(--sp-ink) !important;
+}
+.woocommerce ul.products li.product .price {
+  color: var(--sp-ink) !important;
+  font-family: var(--sp-body) !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em !important;
+  display: block !important;
+}
+.woocommerce ul.products li.product .price del { color: var(--sp-muted) !important; font-weight: 400 !important; }
+.woocommerce ul.products li.product .price ins { text-decoration: none !important; }
+.woocommerce ul.products li.product .button {
+  margin: 16px auto 20px !important;
+  width: auto !important;
+  min-width: 160px !important;
+}
+/* Sale badge — minimal black pill */
+.woocommerce ul.products li.product .onsale, .woocommerce span.onsale {
+  background: var(--sp-black) !important;
+  color: #fff !important;
+  border-radius: var(--sp-pill) !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  padding: 5px 14px !important;
+  min-height: unset !important; min-width: unset !important;
+  line-height: 1.6 !important;
+  top: 14px !important; left: 14px !important;
+  box-shadow: var(--sp-shadow-sm) !important;
+}
+
+/* Sorting dropdown */
+.woocommerce-ordering select, select.orderby {
+  background: #fff !important;
+  border: 1px solid var(--sp-border) !important;
+  border-radius: var(--sp-radius) !important;
+  color: var(--sp-ink) !important;
+  font-family: var(--sp-body) !important;
+  font-size: 13px !important;
+  padding: 10px 36px 10px 16px !important;
+  box-shadow: var(--sp-shadow-sm) !important;
+}
+.woocommerce-result-count { color: var(--sp-muted) !important; font-size: 13px !important; }
+
+/* ============================================================
+   SINGLE PRODUCT
+   ============================================================ */
+.woocommerce div.product .product_title { font-size: clamp(32px, 5vw, 52px) !important; }
+.woocommerce div.product p.price, .woocommerce div.product span.price {
+  color: var(--sp-ink) !important;
+  font-size: 26px !important;
+  font-weight: 700 !important;
+}
+.woocommerce div.product div.images img {
+  box-shadow: var(--sp-shadow-md) !important;
+  border-radius: var(--sp-radius) !important;
+}
+.woocommerce div.product form.cart .qty {
+  border: 1px solid var(--sp-border) !important;
+  border-radius: var(--sp-radius) !important;
+  padding: 12px !important;
+  width: 72px !important;
+  text-align: center !important;
+}
+.woocommerce div.product .woocommerce-tabs ul.tabs {
+  border-bottom: 1px solid var(--sp-border) !important;
+  background: transparent !important; padding: 0 !important;
+}
+.woocommerce div.product .woocommerce-tabs ul.tabs li {
+  background: transparent !important; border: none !important; margin: 0 !important;
+}
+.woocommerce div.product .woocommerce-tabs ul.tabs li a {
+  font-family: var(--sp-display) !important;
+  font-size: 18px !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  color: var(--sp-muted) !important;
+  padding: 12px 22px !important;
+}
+.woocommerce div.product .woocommerce-tabs ul.tabs li.active a {
+  color: var(--sp-ink) !important;
+  box-shadow: inset 0 -2px 0 var(--sp-black) !important;
+}
+.woocommerce div.product .woocommerce-tabs .panel {
+  background: transparent !important; border: none !important; padding: 28px 0 !important;
+}
+
+/* ============================================================
+   FORMS, CART, CHECKOUT
+   ============================================================ */
+input[type="text"], input[type="email"], input[type="password"],
+input[type="tel"], input[type="number"], input[type="search"],
+textarea, .woocommerce form .input-text {
+  background: #fff !important;
+  border: 1px solid var(--sp-border) !important;
+  border-radius: var(--sp-radius) !important;
+  color: var(--sp-ink) !important;
+  font-family: var(--sp-body) !important;
+  padding: 12px 14px !important;
+  width: 100% !important;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.03) !important;
+  transition: border-color var(--sp-transition), box-shadow var(--sp-transition) !important;
+}
+input:focus, textarea:focus, .woocommerce form .input-text:focus {
+  outline: none !important;
+  border-color: var(--sp-black) !important;
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.08) !important;
+}
+label { color: var(--sp-ink) !important; font-size: 13px !important; font-weight: 600 !important; }
+
+table.shop_table {
+  border: 1px solid var(--sp-border) !important;
+  border-radius: var(--sp-radius) !important;
+  border-collapse: collapse !important;
+  box-shadow: var(--sp-shadow-sm) !important;
+}
+table.shop_table th {
+  background: var(--sp-gray) !important;
+  color: var(--sp-ink) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.12em !important;
+  padding: 14px 18px !important;
+}
+table.shop_table td { border-top: 1px solid var(--sp-border) !important; padding: 14px 18px !important; }
+
+.woocommerce-message { border-top-color: var(--sp-black) !important; box-shadow: var(--sp-shadow-sm) !important; }
+.woocommerce-message::before { color: var(--sp-black) !important; }
+
+/* ============================================================
+   DARK SECTIONS — add class "sp-dark-section" to a Group block
+   ============================================================ */
+.sp-dark-section {
+  background: var(--sp-dark) !important;
+  color: #fff !important;
+  padding: 80px 24px !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06) !important;
+}
+.sp-dark-section h1, .sp-dark-section h2, .sp-dark-section h3 { color: #fff !important; }
+.sp-dark-section p { color: #b8b8b8 !important; }
+.sp-dark-section .wp-block-button__link {
+  background: #fff !important;
+  color: var(--sp-black) !important;
+  border-color: #fff !important;
+}
+.sp-dark-section .wp-block-button__link:hover {
+  background: transparent !important;
+  color: #fff !important;
+  border-color: #fff !important;
+}
+
+/* ============================================================
+   FOOTER — near-black, quiet
+   ============================================================ */
+#colophon, .site-footer, .ast-small-footer, .ast-footer-overlay, .footer-widget-area {
+  background: var(--sp-dark) !important;
+  color: #a8a8a8 !important;
+  border-top: none !important;
+}
+.site-footer a, #colophon a, .ast-footer-menu .menu-item a { color: #a8a8a8 !important; }
+.site-footer a:hover, #colophon a:hover { color: #fff !important; opacity: 1; }
+.ast-footer-overlay .widget-title, .site-footer .widget-title {
+  font-family: var(--sp-display) !important;
+  color: #fff !important;
+  font-size: 20px !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+}
+.ast-small-footer { border-top: 1px solid #222 !important; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 921px) {
+  .woocommerce ul.products, .woocommerce-page ul.products {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px !important;
+  }
+  .sp-dark-section { padding: 48px 16px !important; }
+}
+@media (max-width: 544px) {
+  .woocommerce ul.products li.product img { height: 170px !important; }
+  .woocommerce ul.products li.product .woocommerce-loop-product__title { font-size: 18px !important; }
+  .woocommerce ul.products li.product .button { min-width: 0 !important; width: calc(100% - 28px) !important; }
+}
