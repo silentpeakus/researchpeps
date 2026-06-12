@@ -1,0 +1,310 @@
+<!-- wp:html -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:            #070d1a;
+      --bg-2:          #0b1425;
+      --bg-3:          #0f1b30;
+      --card:          #0d1828;
+      --blue:          #38bdf8;
+      --blue-dim:      rgba(56, 189, 248, 0.10);
+      --blue-border:   rgba(56, 189, 248, 0.22);
+      --text:          #f0f4fb;
+      --text-2:        #94a3b8;
+      --text-3:        #4e6680;
+      --border:        rgba(148, 163, 184, 0.09);
+    }
+
+    html body,
+    html body .site,
+    html body #content,
+    html body .site-content,
+    html body .site-main,
+    html body .entry-content {
+      background: var(--bg) !important;
+      color: var(--text) !important;
+      font-family: 'Inter', sans-serif !important;
+    }
+    html body .entry-content { margin: 0 !important; padding: 0 !important; max-width: 100% !important; }
+
+    .spk-container { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+
+    /* ── NAVBAR ── */
+    .spk-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      padding: 16px 0;
+      background: rgba(7, 13, 26, 0.88);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+    }
+    .spk-nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .spk-logo {
+      font-family: 'Montserrat', sans-serif !important;
+      font-weight: 900;
+      font-size: 1.15rem;
+      letter-spacing: 0.12em;
+      text-decoration: none !important;
+      color: var(--text) !important;
+    }
+    .spk-logo span { color: var(--blue) !important; }
+    .spk-nav-links { display: flex; align-items: center; gap: 32px; list-style: none !important; margin: 0 !important; padding: 0 !important; }
+    .spk-nav-links li { list-style: none !important; margin: 0 !important; }
+    .spk-nav-links a {
+      color: var(--text-2) !important;
+      text-decoration: none !important;
+      font-size: 0.87rem;
+      font-weight: 500;
+    }
+    .spk-nav-links a:hover, .spk-nav-links a.active { color: var(--text) !important; }
+    @media (max-width: 700px) {
+      .spk-nav-links { gap: 16px; }
+      .spk-nav-links .spk-hide-mobile { display: none; }
+    }
+
+    /* ── HERO ── */
+    .spk-hero {
+      position: relative;
+      padding: 150px 0 60px;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse 90% 70% at 50% -10%, rgba(56, 189, 248, 0.13) 0%, transparent 65%),
+        linear-gradient(175deg, var(--bg) 0%, var(--bg-2) 100%);
+      border-bottom: 1px solid var(--border);
+    }
+    .spk-eyebrow {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 14px;
+    }
+    .spk-eyebrow-line { width: 28px; height: 2px; background: var(--blue); border-radius: 2px; }
+    .spk-eyebrow-text {
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--blue);
+    }
+    .spk-hero h1 {
+      font-family: 'Montserrat', sans-serif !important;
+      font-weight: 900 !important;
+      font-size: clamp(2.2rem, 5vw, 3.6rem) !important;
+      line-height: 1.08 !important;
+      letter-spacing: -0.02em !important;
+      color: var(--text) !important;
+      text-transform: none !important;
+      margin: 0 0 16px !important;
+    }
+    .spk-hero p {
+      color: var(--text-2) !important;
+      max-width: 560px;
+      font-size: 1rem !important;
+      line-height: 1.75 !important;
+      margin: 0 !important;
+    }
+
+    /* ── WOOCOMMERCE GRID — restyled to the dark design ── */
+    html body .entry-content .woocommerce {
+      max-width: 1180px;
+      margin: 40px auto 70px !important;
+      padding: 0 28px !important;
+    }
+    html body .woocommerce .woocommerce-result-count,
+    html body .woocommerce .woocommerce-ordering { display: none !important; }
+
+    html body .woocommerce ul.products {
+      display: grid !important;
+      grid-template-columns: repeat(4, 1fr) !important;
+      gap: 18px !important;
+      list-style: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    html body .woocommerce ul.products li.product {
+      background: var(--card) !important;
+      border: 1px solid var(--border) !important;
+      border-radius: 20px !important;
+      overflow: hidden !important;
+      margin: 0 !important;
+      padding: 0 0 18px !important;
+      width: auto !important;
+      float: none !important;
+      display: flex !important;
+      flex-direction: column !important;
+      text-align: left !important;
+      transition: all 0.3s ease !important;
+    }
+    html body .woocommerce ul.products li.product:hover {
+      border-color: var(--blue-border) !important;
+      transform: translateY(-5px);
+      box-shadow: 0 24px 48px rgba(0,0,0,0.45), 0 0 0 1px var(--blue-border) !important;
+    }
+    html body .woocommerce ul.products li.product img {
+      width: 100% !important;
+      height: 200px !important;
+      object-fit: cover !important;
+      margin: 0 !important;
+      border-radius: 0 !important;
+      border-bottom: 1px solid var(--border) !important;
+      background: var(--bg-3) !important;
+    }
+    html body .woocommerce ul.products li.product .woocommerce-loop-product__title {
+      font-family: 'Montserrat', sans-serif !important;
+      font-weight: 700 !important;
+      font-size: 0.97rem !important;
+      line-height: 1.3 !important;
+      color: var(--text) !important;
+      text-transform: none !important;
+      letter-spacing: 0 !important;
+      padding: 16px 20px 4px !important;
+      margin: 0 !important;
+    }
+    html body .woocommerce ul.products li.product a { text-decoration: none !important; }
+    html body .woocommerce ul.products li.product .price,
+    html body .woocommerce ul.products li.product .price ins {
+      font-family: 'Montserrat', sans-serif !important;
+      font-weight: 800 !important;
+      font-size: 1.2rem !important;
+      color: var(--blue) !important;
+      padding: 0 20px !important;
+      margin: 0 !important;
+      text-decoration: none !important;
+      background: none !important;
+      display: block !important;
+    }
+    html body .woocommerce ul.products li.product .price del {
+      color: var(--text-3) !important;
+      font-size: 0.85rem !important;
+      font-weight: 600 !important;
+      display: inline !important;
+      padding: 0 !important;
+      margin-right: 6px !important;
+    }
+    html body .woocommerce ul.products li.product .button,
+    html body .woocommerce ul.products li.product .add_to_cart_button {
+      background: var(--blue-dim) !important;
+      color: var(--blue) !important;
+      border: 1px solid var(--blue-border) !important;
+      border-radius: 7px !important;
+      font-family: 'Inter', sans-serif !important;
+      font-size: 0.78rem !important;
+      font-weight: 600 !important;
+      text-transform: none !important;
+      letter-spacing: 0 !important;
+      padding: 10px 16px !important;
+      margin: 14px 20px 0 !important;
+      width: auto !important;
+      text-align: center !important;
+      box-shadow: none !important;
+      transition: all 0.2s !important;
+    }
+    html body .woocommerce ul.products li.product .button:hover {
+      background: var(--blue) !important;
+      color: var(--bg) !important;
+      transform: none !important;
+    }
+    html body .woocommerce ul.products li.product .added_to_cart {
+      color: var(--blue) !important;
+      font-size: 0.76rem !important;
+      padding: 6px 20px 0 !important;
+    }
+    html body .woocommerce span.onsale {
+      background: var(--bg) !important;
+      color: var(--blue) !important;
+      border: 1px solid var(--blue-border) !important;
+      border-radius: 999px !important;
+      font-size: 0.66rem !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.1em !important;
+      text-transform: uppercase !important;
+      min-height: 0 !important;
+      min-width: 0 !important;
+      line-height: 1.4 !important;
+      padding: 5px 12px !important;
+      top: 12px !important;
+      left: 12px !important;
+      margin: 0 !important;
+    }
+    html body .woocommerce .star-rating,
+    html body .woocommerce .star-rating span::before { color: var(--blue) !important; }
+
+    @media (max-width: 1080px) {
+      html body .woocommerce ul.products { grid-template-columns: repeat(2, 1fr) !important; }
+    }
+    @media (max-width: 700px) {
+      html body .woocommerce ul.products { grid-template-columns: 1fr !important; }
+      .spk-hero { padding: 120px 0 44px; }
+    }
+
+    /* ── FDA + FOOTER ── */
+    .spk-fda {
+      max-width: 1180px;
+      margin: 0 auto 70px;
+      padding: 22px 26px;
+      background: rgba(56, 189, 248, 0.03);
+      border: 1px solid var(--blue-border);
+      border-radius: 12px;
+      font-size: 0.76rem;
+      color: var(--text-3);
+      line-height: 1.75;
+    }
+    .spk-fda strong { color: var(--blue); font-weight: 600; }
+    .spk-footer {
+      background: var(--bg-2);
+      border-top: 1px solid var(--border);
+      padding: 48px 0 32px;
+    }
+    .spk-footer p {
+      font-size: 0.7rem !important;
+      color: var(--text-3) !important;
+      line-height: 1.75 !important;
+      max-width: 720px;
+      margin: 0 0 14px !important;
+    }
+    .spk-footer strong { color: var(--text-2); }
+    .spk-copy { font-size: 0.76rem; color: var(--text-3); }
+  </style>
+
+  <nav class="spk-nav">
+    <div class="spk-container">
+      <div class="spk-nav-inner">
+        <a href="https://silentpeak.us/" class="spk-logo">SILENT <span>PEAK</span> LABS</a>
+        <ul class="spk-nav-links">
+          <li><a href="https://silentpeak.us/">Home</a></li>
+          <li><a href="https://silentpeak.us/shop2/" class="active">Catalog</a></li>
+          <li class="spk-hide-mobile"><a href="https://silentpeak.us/#about">About</a></li>
+          <li class="spk-hide-mobile"><a href="https://silentpeak.us/#faq">FAQ</a></li>
+          <li><a href="https://silentpeak.us/cart/">Cart</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="spk-hero">
+    <div class="spk-container">
+      <div class="spk-eyebrow">
+        <div class="spk-eyebrow-line"></div>
+        <span class="spk-eyebrow-text">Research Catalog · US Domestic · 2–4 Day Delivery</span>
+      </div>
+      <h1>The Full Compound Catalog</h1>
+      <p>All materials supplied strictly for in-vitro laboratory research by qualified investigators. Pricing and availability shown are live.</p>
+    </div>
+  </header>
+<!-- /wp:html -->
+
+<!-- wp:shortcode -->
+[products limit="100" columns="4" orderby="price" order="DESC" paginate="false"]
+<!-- /wp:shortcode -->
+
+<!-- wp:html -->
+  <div class="spk-fda">
+    <strong>FDA Disclaimer &amp; Research Use Notice:</strong> These statements have not been evaluated by the Food and Drug Administration. These products are not intended to diagnose, treat, cure, or prevent any disease or medical condition. All compounds listed are sold exclusively for in-vitro laboratory research and scientific investigation by qualified professionals. They are not approved for human consumption, therapeutic application, or veterinary use. Purchasers accept full responsibility for compliance with all applicable federal, state, and local regulations governing the purchase, handling, and use of research materials.
+  </div>
+
+  <footer class="spk-footer">
+    <div class="spk-container">
+      <p><strong>For Research Use Only.</strong> All products sold by Silent Peak Labs are intended strictly for in-vitro laboratory research by qualified professionals. These compounds have not been evaluated or approved by the Food and Drug Administration (FDA) for human consumption, therapeutic use, or veterinary application.</p>
+      <div class="spk-copy">© 2026 Silent Peak Labs. All rights reserved.</div>
+    </div>
+  </footer>
+<!-- /wp:html -->
