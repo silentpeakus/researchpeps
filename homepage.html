@@ -93,18 +93,10 @@
 
     /* ─── NAVBAR ─── */
     nav {
-      position: fixed;
+      position: absolute;   /* sits at the top, scrolls away with the page */
       top: 0; left: 0; right: 0;
       z-index: 200;
       padding: 22px 0;
-      transition: all 0.35s ease;
-    }
-    nav.scrolled {
-      background: rgba(7, 13, 26, 0.88);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      padding: 14px 0;
-      border-bottom: 1px solid var(--border);
     }
     .nav-inner {
       display: flex;
@@ -129,11 +121,13 @@
       list-style: none;
     }
     .nav-links a {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
       color: var(--text-2);
       text-decoration: none;
-      font-size: 0.87rem;
-      font-weight: 500;
-      letter-spacing: 0.01em;
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--text); }
@@ -147,10 +141,13 @@
       display: flex;
       align-items: center;
       gap: 7px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
       color: var(--text-2);
       text-decoration: none;
-      font-size: 0.87rem;
-      font-weight: 500;
       transition: color 0.2s;
     }
     .nav-cart-link:hover { color: var(--text); }
@@ -1356,12 +1353,6 @@
 
 
 <script>
-  // ── Navbar scroll effect
-  const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 50);
-  });
-
   // ── Generate starfield
   (function () {
     const container = document.getElementById('starsEl');
