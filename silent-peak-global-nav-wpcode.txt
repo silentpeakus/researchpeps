@@ -1,0 +1,120 @@
+<!-- ════════════════════════════════════════════════════════════
+     SILENT PEAK LABS — GLOBAL NAV BAR (for product/store pages)
+     INSTALL WITH WPCODE:
+     1. WP Admin → Code Snippets → + Add Snippet
+     2. Choose "Add Your Custom Code (New Snippet)"
+     3. Title: "Silent Peak Global Nav"
+        Code Type: HTML Snippet
+     4. Paste EVERYTHING in this file into the code box
+     5. Insertion: Auto Insert · Location: "Site Wide Body"
+     6. Toggle the snippet to Active → Save Snippet
+     ════════════════════════════════════════════════════════ -->
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  /* ── Silent Peak global nav bar ── */
+  #spkGnav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 99999;
+    background: rgba(7, 13, 26, 0.96);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+    padding: 0 28px;
+  }
+  #spkGnav .spk-gnav-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    height: 64px;
+  }
+  #spkGnav .spk-gnav-logo {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 900 !important;
+    font-size: 1.05rem !important;
+    letter-spacing: 0.12em !important;
+    color: #f0f4fb !important;
+    text-decoration: none !important;
+    white-space: nowrap;
+  }
+  #spkGnav .spk-gnav-logo span { color: #38bdf8 !important; }
+  #spkGnav .spk-gnav-links {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  #spkGnav .spk-gnav-links li { list-style: none !important; margin: 0 !important; }
+  #spkGnav .spk-gnav-links a {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 0.72rem !important;
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase !important;
+    color: #94a3b8 !important;
+    text-decoration: none !important;
+    transition: color 0.2s;
+  }
+  #spkGnav .spk-gnav-links a:hover { color: #f0f4fb !important; }
+  #spkGnav .spk-gnav-links a.spk-gnav-cart {
+    color: #38bdf8 !important;
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    border-radius: 7px;
+    padding: 8px 16px;
+  }
+  #spkGnav .spk-gnav-links a.spk-gnav-cart:hover {
+    background: #38bdf8 !important;
+    color: #070d1a !important;
+  }
+
+  /* ── Push store pages down so nothing hides under the bar,
+        and give product galleries breathing room ── */
+  body.single-product,
+  body.woocommerce-page,
+  body.woocommerce-cart,
+  body.woocommerce-checkout,
+  body.archive.tax-product_cat,
+  body.page-id-171 {
+    padding-top: 64px !important;
+  }
+  body.single-product div.product,
+  body.single-product .woocommerce-breadcrumb {
+    margin-top: 28px !important;
+  }
+
+  @media (max-width: 700px) {
+    #spkGnav { padding: 0 16px; }
+    #spkGnav .spk-gnav-links { gap: 14px; }
+    #spkGnav .spk-gnav-links li.spk-gnav-hide-mobile { display: none; }
+    #spkGnav .spk-gnav-logo { font-size: 0.9rem !important; }
+  }
+</style>
+
+<nav id="spkGnav">
+  <div class="spk-gnav-inner">
+    <a href="https://silentpeak.us/" class="spk-gnav-logo">SILENT <span>PEAK</span> LABS</a>
+    <ul class="spk-gnav-links">
+      <li><a href="https://silentpeak.us/">Home</a></li>
+      <li><a href="https://silentpeak.us/shop2/">Catalog</a></li>
+      <li class="spk-gnav-hide-mobile"><a href="https://silentpeak.us/#about">About</a></li>
+      <li class="spk-gnav-hide-mobile"><a href="https://silentpeak.us/#faq">FAQ</a></li>
+      <li><a href="https://silentpeak.us/cart/" class="spk-gnav-cart">Cart</a></li>
+    </ul>
+  </div>
+</nav>
+
+<script>
+  // The homepage and catalog already have their own built-in menu —
+  // remove this global bar there so it never doubles up.
+  document.addEventListener('DOMContentLoaded', function () {
+    var own = document.getElementById('navbar') || document.querySelector('.spk-nav');
+    var gnav = document.getElementById('spkGnav');
+    if (own && gnav) gnav.parentNode.removeChild(gnav);
+  });
+</script>
