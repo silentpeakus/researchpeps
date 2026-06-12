@@ -1,12 +1,6 @@
 <!-- ════════════════════════════════════════════════════════════
-     SILENT PEAK LABS — HOMEPAGE  (updated: catalog buttons
-     now point to /shop2/)
-     HOW TO INSTALL:
-     1. Pages → Add New → name it "Home"
-     2. Add a "Custom HTML" block (or Elementor HTML widget
-        on an Elementor Canvas layout) and paste EVERYTHING
-        in this file into it
-     3. Publish, then Settings → Reading → set as homepage
+     SILENT PEAK LABS — HOMEPAGE (Browse Catalog → /shop2/)
+     Paste everything below into your homepage Custom HTML block
      ════════════════════════════════════════════════════════ -->
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1419,7 +1413,7 @@
   // If a lookup fails, the card keeps its hand-written price and the
   // button falls back to linking to the product page.
   (function () {
-    const STORE = 'https://silentpeak.us';
+    const STORE = /silentpeak\.us$/.test(location.hostname) ? location.origin : 'https://silentpeak.us';
 
     const formatPrice = (prices) => {
       const minor = Math.pow(10, prices.currency_minor_unit || 2);

@@ -497,7 +497,7 @@
   // in WP admin (image, price, stock, category) updates this page
   // automatically — nothing here is hand-maintained.
   (function () {
-    const STORE = 'https://silentpeak.us';
+    const STORE = /silentpeak\.us$/.test(location.hostname) ? location.origin : 'https://silentpeak.us';
     const grid = document.getElementById('productsGrid');
     const filterBar = document.getElementById('filterBar');
     const countEl = document.getElementById('catalogCount');

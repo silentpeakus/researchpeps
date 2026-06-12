@@ -1418,7 +1418,7 @@
   // If a lookup fails, the card keeps its hand-written price and the
   // button falls back to linking to the product page.
   (function () {
-    const STORE = 'https://silentpeak.us';
+    const STORE = /silentpeak\.us$/.test(location.hostname) ? location.origin : 'https://silentpeak.us';
 
     const formatPrice = (prices) => {
       const minor = Math.pow(10, prices.currency_minor_unit || 2);

@@ -1,5 +1,4 @@
 <!-- wp:html -->
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
@@ -485,7 +484,7 @@
   // in WP admin (image, price, stock, category) updates this page
   // automatically — nothing here is hand-maintained.
   (function () {
-    const STORE = 'https://silentpeak.us';
+    const STORE = /silentpeak\.us$/.test(location.hostname) ? location.origin : 'https://silentpeak.us';
     const grid = document.getElementById('productsGrid');
     const filterBar = document.getElementById('filterBar');
     const countEl = document.getElementById('catalogCount');
