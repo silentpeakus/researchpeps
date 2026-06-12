@@ -1,11 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Silent Peak Labs | Research-Grade Peptides | US Domestic</title>
-  <meta name="description" content="Silent Peak Labs is a US-domestic supplier of research-grade peptides and biochemical compounds for qualified scientific investigators. Verified purity, 2–4 day delivery, encrypted ordering.">
-  <meta name="keywords" content="research peptides, BPC-157, NAD+, CJC-1295, Ipamorelin, Retatrutide, GHK-Cu, Selank, Melanotan-2, research chemicals, US domestic peptides">
+<!-- ════════════════════════════════════════════════════════════
+     SILENT PEAK LABS — HOMEPAGE
+     HOW TO INSTALL:
+     1. Pages → Add New → name it "Home"
+     2. Edit with Elementor → bottom-left gear icon →
+        Page Layout: "Elementor Canvas"
+     3. Drag in one "HTML" widget, full width
+     4. Paste EVERYTHING in this file into that widget
+     5. Publish, then Settings → Reading → set as homepage
+     ════════════════════════════════════════════════════════ -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
@@ -766,8 +769,6 @@
       .hero-content { padding: 100px 24px 180px; }
     }
   </style>
-</head>
-<body>
 
 <!-- ─── NAVBAR ─── -->
 <nav id="navbar">
@@ -1465,5 +1466,3 @@
   })();
 </script>
 
-</body>
-</html>
