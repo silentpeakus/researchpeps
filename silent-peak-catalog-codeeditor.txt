@@ -480,14 +480,14 @@
       el.className = 'star';
       const size = Math.random() > 0.82 ? 2.5 : 1.5;
       el.style.cssText = [
-        `left:${(Math.random() * 100).toFixed(1)}%`,
-        `top:${(Math.random() * 85).toFixed(1)}%`,
-        `width:${size}px`,
-        `height:${size}px`,
-        `--d:${(2.2 + Math.random() * 3.5).toFixed(1)}s`,
-        `--dl:${(Math.random() * 5).toFixed(1)}s`,
-        `--lo:${(0.1 + Math.random() * 0.25).toFixed(2)}`,
-        `--hi:${(0.55 + Math.random() * 0.45).toFixed(2)}`,
+        'left:' + (Math.random() * 100).toFixed(1) + '%',
+        'top:' + (Math.random() * 85).toFixed(1) + '%',
+        'width:' + size + 'px',
+        'height:' + size + 'px',
+        '--d:' + (2.2 + Math.random() * 3.5).toFixed(1) + 's',
+        '--dl:' + (Math.random() * 5).toFixed(1) + 's',
+        '--lo:' + (0.1 + Math.random() * 0.25).toFixed(2),
+        '--hi:' + (0.55 + Math.random() * 0.45).toFixed(2)
       ].join(';');
       frag.appendChild(el);
     }
