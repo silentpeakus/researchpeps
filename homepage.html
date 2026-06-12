@@ -93,10 +93,18 @@
 
     /* ─── NAVBAR ─── */
     nav {
-      position: absolute;   /* sits at the top, scrolls away with the page */
+      position: fixed;      /* stays pinned in place while you scroll */
       top: 0; left: 0; right: 0;
       z-index: 200;
       padding: 22px 0;
+      transition: all 0.35s ease;
+    }
+    nav.scrolled {
+      background: rgba(7, 13, 26, 0.88);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
     }
     .nav-inner {
       display: flex;
@@ -1353,6 +1361,12 @@
 
 
 <script>
+  // ── Navbar scroll effect (frosted bar once you start scrolling)
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', function () {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
   // ── Generate starfield
   (function () {
     const container = document.getElementById('starsEl');
