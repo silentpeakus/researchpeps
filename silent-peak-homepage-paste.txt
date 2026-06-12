@@ -1,6 +1,7 @@
 <!-- ════════════════════════════════════════════════════════════
-     SILENT PEAK LABS — HOMEPAGE (minifier-safe version)
+     SILENT PEAK LABS — HOMEPAGE
      Paste everything below into your homepage Custom HTML block
+     (replace the old contents entirely)
      ════════════════════════════════════════════════════════ -->
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -824,8 +825,8 @@
       <span class="eyebrow-text">US Domestic &nbsp;·&nbsp; Research Grade &nbsp;·&nbsp; 2–4 Day Delivery</span>
     </div>
     <h1>
-      Precision Research<br>
-      <span class="gradient">Materials, Delivered.</span>
+      Research-Grade Compounds,<br>
+      <span class="gradient">Engineered for Discovery.</span>
     </h1>
     <p class="hero-sub">
       Silent Peak Labs supplies rigorously characterized peptides and biochemical compounds to qualified researchers. Domestic sourcing, independently verified purity, and dependable logistics — purpose-built for serious scientific investigation.
