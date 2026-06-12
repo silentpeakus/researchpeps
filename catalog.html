@@ -453,6 +453,22 @@
 </footer>
 
 <script>
+  // On-page diagnostic: if any script error occurs, show it in red
+  // at the top of the products area so it can be reported without
+  // needing browser dev tools.
+  window.addEventListener('error', function (e) {
+    try {
+      var grid = document.getElementById('productsGrid');
+      if (!grid) return;
+      var div = document.createElement('div');
+      div.style.cssText = 'grid-column:1/-1;background:#3b1d1d;border:1px solid #c25e5e;color:#ffb4b4;padding:12px 16px;border-radius:10px;font-size:12px;font-family:monospace;margin-bottom:10px;word-break:break-word';
+      div.textContent = 'DIAGNOSTIC: ' + (e.message || 'script error') + (e.lineno ? ' (line ' + e.lineno + ')' : '');
+      grid.prepend(div);
+    } catch (_) {}
+  });
+</script>
+
+<script>
   // ── Navbar scroll effect
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
@@ -490,7 +506,9 @@
     }
     container.appendChild(frag);
   })();
+</script>
 
+<script>
   // ── LIVE WOOCOMMERCE CATALOG
   // Pulls every published product from the store's public Store API
   // and renders it in the landing-page card style. Editing a product
@@ -601,8 +619,9 @@
         buildFilters();
         render(allProducts);
       })
-      .catch(() => {
-        grid.innerHTML = '<div class="catalog-message">The catalog could not be loaded right now.<br>' +
+      .catch((err) => {
+        grid.innerHTML = '<div class="catalog-message">The catalog could not be loaded right now ' +
+          '(reason: <span style="color:#ffb4b4">' + (err && err.message ? err.message : 'unknown') + '</span>).<br>' +
           'You can browse products directly at <a href="' + STORE + '/shop/">silentpeak.us/shop</a>.</div>';
         countEl.textContent = '';
       });
