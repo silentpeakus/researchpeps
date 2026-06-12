@@ -376,7 +376,6 @@
     }
   </style>
 
-<!-- ─── NAVBAR ─── -->
 <nav id="navbar">
   <div class="container">
     <div class="nav-inner">
@@ -401,7 +400,6 @@
   </div>
 </nav>
 
-<!-- ─── CATALOG HEADER ─── -->
 <header class="catalog-hero">
   <div class="hero-stars" id="starsEl"></div>
   <div class="container catalog-hero-inner">
@@ -416,7 +414,6 @@
   </div>
 </header>
 
-<!-- ─── CATALOG ─── -->
 <section id="catalog">
   <div class="container">
     <div class="filter-bar" id="filterBar">
@@ -426,14 +423,12 @@
 
     <div class="products-grid" id="productsGrid"></div>
 
-    <!-- FDA Disclaimer -->
     <div class="fda-block">
       <strong>FDA Disclaimer &amp; Research Use Notice:</strong> These statements have not been evaluated by the Food and Drug Administration. These products are not intended to diagnose, treat, cure, or prevent any disease or medical condition. All compounds listed are sold exclusively for in-vitro laboratory research and scientific investigation by qualified professionals. They are not approved for human consumption, therapeutic application, or veterinary use. Purchasers accept full responsibility for compliance with all applicable federal, state, and local regulations governing the purchase, handling, and use of research materials.
     </div>
   </div>
 </section>
 
-<!-- ─── FOOTER ─── -->
 <footer>
   <div class="container">
     <div class="footer-bottom">
