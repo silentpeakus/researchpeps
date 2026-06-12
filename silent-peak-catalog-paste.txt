@@ -1,0 +1,616 @@
+<!-- ════════════════════════════════════════════════════════════
+     SILENT PEAK LABS — CATALOG PAGE (/shop2/)
+     HOW TO INSTALL:
+     1. Pages → Add New → title it "Catalog"
+     2. In the page settings (right sidebar), set the URL
+        slug/permalink to:  shop2
+     3. Add a "Custom HTML" block (or Elementor HTML widget
+        on an Elementor Canvas layout) and paste EVERYTHING
+        in this file into it
+     4. If using the normal editor: in Astra Settings on the
+        right, disable the page title, header, and footer
+     5. Publish — the grid fills itself from WooCommerce
+     ════════════════════════════════════════════════════════ -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* ─── DESIGN TOKENS (matches landing page) ─── */
+    :root {
+      --bg:            #070d1a;
+      --bg-2:          #0b1425;
+      --bg-3:          #0f1b30;
+      --card:          #0d1828;
+      --card-hover:    #13203a;
+      --blue:          #38bdf8;
+      --blue-dark:     #0ea5e9;
+      --blue-dim:      rgba(56, 189, 248, 0.10);
+      --blue-border:   rgba(56, 189, 248, 0.22);
+      --indigo:        #818cf8;
+      --indigo-dim:    rgba(129, 140, 248, 0.10);
+      --indigo-border: rgba(129, 140, 248, 0.22);
+      --text:          #f0f4fb;
+      --text-2:        #94a3b8;
+      --text-3:        #4e6680;
+      --border:        rgba(148, 163, 184, 0.09);
+      --radius:        12px;
+      --radius-lg:     20px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .container { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.93rem;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      border: none;
+      white-space: nowrap;
+    }
+    .btn-primary { background: var(--blue); color: #070d1a; }
+    .btn-primary:hover {
+      background: #7dd3fc;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 28px rgba(56, 189, 248, 0.32);
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 3px 11px;
+      border-radius: 999px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+    .tag-blue   { background: var(--blue-dim);   color: var(--blue);   border: 1px solid var(--blue-border); }
+    .tag-indigo { background: var(--indigo-dim);  color: var(--indigo); border: 1px solid var(--indigo-border); }
+
+    /* ─── NAVBAR (same as landing) ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      padding: 22px 0;
+      transition: all 0.35s ease;
+    }
+    nav.scrolled {
+      background: rgba(7, 13, 26, 0.88);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .nav-logo {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 1.15rem;
+      letter-spacing: 0.12em;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .nav-logo span { color: var(--blue); }
+    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+    .nav-links a {
+      color: var(--text-2);
+      text-decoration: none;
+      font-size: 0.87rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .nav-right { display: flex; align-items: center; gap: 18px; }
+    .nav-cart-link {
+      display: flex; align-items: center; gap: 7px;
+      color: var(--text-2);
+      text-decoration: none;
+      font-size: 0.87rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-cart-link:hover { color: var(--text); }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none; border: none; padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--text-2); border-radius: 2px;
+    }
+
+    /* ─── CATALOG HEADER ─── */
+    .catalog-hero {
+      position: relative;
+      padding: 170px 0 70px;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse 90% 70% at 50% -10%, rgba(56, 189, 248, 0.13) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 40% at 88% 80%,  rgba(129, 140, 248, 0.06) 0%, transparent 55%),
+        linear-gradient(175deg, var(--bg) 0%, var(--bg-2) 100%);
+      border-bottom: 1px solid var(--border);
+    }
+    .catalog-hero .hero-stars { position: absolute; inset: 0; pointer-events: none; }
+    .star {
+      position: absolute;
+      background: #fff;
+      border-radius: 50%;
+      animation: twinkle var(--d, 3s) ease-in-out infinite var(--dl, 0s);
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: var(--lo, 0.2); }
+      50%       { opacity: var(--hi, 0.8); }
+    }
+    .catalog-hero-inner { position: relative; z-index: 2; }
+
+    .section-eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .section-eyebrow-line { width: 28px; height: 2px; background: var(--blue); border-radius: 2px; }
+    .section-eyebrow-text {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--blue);
+    }
+    .catalog-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .catalog-sub {
+      color: var(--text-2);
+      max-width: 560px;
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+
+    /* ─── FILTER CHIPS ─── */
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding: 28px 0 8px;
+    }
+    .chip {
+      padding: 8px 18px;
+      border-radius: 999px;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-2);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .chip:hover { border-color: var(--blue-border); color: var(--text); }
+    .chip.active {
+      background: var(--blue-dim);
+      border-color: var(--blue-border);
+      color: var(--blue);
+    }
+    .catalog-count {
+      margin-left: auto;
+      font-size: 0.76rem;
+      color: var(--text-3);
+      letter-spacing: 0.04em;
+    }
+
+    /* ─── PRODUCT GRID (same card language as landing) ─── */
+    #catalog { padding: 36px 0 90px; background: var(--bg); }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .product-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s ease;
+    }
+    .product-card:hover {
+      border-color: var(--blue-border);
+      transform: translateY(-5px);
+      box-shadow: 0 24px 48px rgba(0,0,0,0.45), 0 0 0 1px var(--blue-border);
+    }
+    .product-img-wrap {
+      display: flex;
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+      background: var(--bg-3);
+      border-bottom: 1px solid var(--border);
+      align-items: center;
+      justify-content: center;
+    }
+    .product-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .product-card:hover .product-img-wrap img { transform: scale(1.05); }
+    .product-card-body { padding: 20px 22px 16px; flex: 1; }
+    .product-cat { margin-bottom: 12px; }
+    .product-name {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.97rem;
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+    .product-name a { color: var(--text); text-decoration: none; transition: color 0.2s; }
+    .product-name a:hover { color: var(--blue); }
+    .product-desc { font-size: 0.8rem; color: var(--text-2); line-height: 1.68; }
+    .product-card-foot {
+      padding: 14px 22px 22px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .product-price {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 1.3rem;
+    }
+    .product-price del {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-3);
+      margin-right: 7px;
+    }
+    .btn-cart {
+      padding: 9px 16px;
+      border-radius: 7px;
+      background: var(--blue-dim);
+      color: var(--blue);
+      border: 1px solid var(--blue-border);
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .btn-cart:hover { background: var(--blue); color: var(--bg); }
+    .btn-cart.disabled { opacity: 0.4; pointer-events: none; }
+
+    /* Skeleton loading shimmer */
+    .skeleton .product-img-wrap,
+    .skeleton .sk-line {
+      position: relative;
+      overflow: hidden;
+      background: var(--bg-3);
+    }
+    .sk-line { height: 14px; border-radius: 6px; margin: 10px 22px 0; }
+    .sk-line.short { width: 45%; }
+    .skeleton .product-img-wrap::after,
+    .skeleton .sk-line::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(148,163,184,0.07), transparent);
+      animation: shimmer 1.4s infinite;
+    }
+    @keyframes shimmer {
+      0%   { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+    .skeleton { padding-bottom: 22px; }
+
+    .catalog-message {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 70px 20px;
+      color: var(--text-2);
+      font-size: 0.92rem;
+      line-height: 1.8;
+    }
+    .catalog-message a { color: var(--blue); }
+
+    .fda-block {
+      margin-top: 44px;
+      padding: 22px 26px;
+      background: rgba(56, 189, 248, 0.03);
+      border: 1px solid var(--blue-border);
+      border-radius: var(--radius);
+      font-size: 0.76rem;
+      color: var(--text-3);
+      line-height: 1.75;
+    }
+    .fda-block strong { color: var(--blue); font-weight: 600; }
+
+    /* ─── FOOTER (same as landing) ─── */
+    footer {
+      background: var(--bg-2);
+      border-top: 1px solid var(--border);
+      padding: 56px 0 32px;
+    }
+    .footer-bottom {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+    .footer-legal {
+      font-size: 0.7rem;
+      color: var(--text-3);
+      line-height: 1.75;
+      max-width: 620px;
+    }
+    .footer-legal strong { color: var(--text-2); font-weight: 600; }
+    .footer-copy { font-size: 0.76rem; color: var(--text-3); white-space: nowrap; margin-top: 4px; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1080px) {
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 700px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .products-grid { grid-template-columns: 1fr; }
+      .catalog-hero { padding: 130px 0 48px; }
+      .catalog-count { margin-left: 0; width: 100%; }
+    }
+  </style>
+
+<!-- ─── NAVBAR ─── -->
+<nav id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="https://silentpeak.us/" class="nav-logo">SILENT <span>PEAK</span> LABS</a>
+      <ul class="nav-links">
+        <li><a href="https://silentpeak.us/">Home</a></li>
+        <li><a href="https://silentpeak.us/shop2/" class="active">Catalog</a></li>
+        <li><a href="https://silentpeak.us/#about">About</a></li>
+        <li><a href="https://silentpeak.us/#faq">FAQ</a></li>
+        <li><a href="https://silentpeak.us/#contact">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <a href="https://silentpeak.us/cart/" class="nav-cart-link">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          Cart
+        </a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ─── CATALOG HEADER ─── -->
+<header class="catalog-hero">
+  <div class="hero-stars" id="starsEl"></div>
+  <div class="container catalog-hero-inner">
+    <div class="section-eyebrow">
+      <div class="section-eyebrow-line"></div>
+      <span class="section-eyebrow-text">Research Catalog · US Domestic · 2–4 Day Delivery</span>
+    </div>
+    <h1 class="catalog-title">The Full Compound Catalog</h1>
+    <p class="catalog-sub">
+      Every compound below is pulled live from our store — current pricing, current availability. All materials supplied strictly for in-vitro laboratory research by qualified investigators.
+    </p>
+  </div>
+</header>
+
+<!-- ─── CATALOG ─── -->
+<section id="catalog">
+  <div class="container">
+    <div class="filter-bar" id="filterBar">
+      <button class="chip active" data-cat="*">All Compounds</button>
+      <span class="catalog-count" id="catalogCount"></span>
+    </div>
+
+    <div class="products-grid" id="productsGrid"></div>
+
+    <!-- FDA Disclaimer -->
+    <div class="fda-block">
+      <strong>FDA Disclaimer &amp; Research Use Notice:</strong> These statements have not been evaluated by the Food and Drug Administration. These products are not intended to diagnose, treat, cure, or prevent any disease or medical condition. All compounds listed are sold exclusively for in-vitro laboratory research and scientific investigation by qualified professionals. They are not approved for human consumption, therapeutic application, or veterinary use. Purchasers accept full responsibility for compliance with all applicable federal, state, and local regulations governing the purchase, handling, and use of research materials.
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="container">
+    <div class="footer-bottom">
+      <p class="footer-legal">
+        <strong>For Research Use Only.</strong> All products sold by Silent Peak Labs are intended strictly for in-vitro laboratory research by qualified professionals. These compounds have not been evaluated or approved by the Food and Drug Administration (FDA) for human consumption, therapeutic use, or veterinary application. They are not drugs, dietary supplements, or medical treatments, and are not intended to diagnose, treat, cure, or prevent any disease or medical condition.
+      </p>
+      <div class="footer-copy">© 2026 Silent Peak Labs. All rights reserved.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // ── Mobile hamburger
+  document.getElementById('hamburger').addEventListener('click', function () {
+    const links = document.querySelector('.nav-links');
+    const isVisible = links.style.display === 'flex';
+    links.style.cssText = isVisible
+      ? ''
+      : 'display:flex;flex-direction:column;gap:16px;position:absolute;top:64px;left:0;right:0;background:rgba(7,13,26,0.97);padding:24px 28px;border-bottom:1px solid rgba(148,163,184,0.09);backdrop-filter:blur(20px)';
+  });
+
+  // ── Starfield (lighter than landing — header only)
+  (function () {
+    const container = document.getElementById('starsEl');
+    const frag = document.createDocumentFragment();
+    for (let i = 0; i < 45; i++) {
+      const el = document.createElement('div');
+      el.className = 'star';
+      const size = Math.random() > 0.82 ? 2.5 : 1.5;
+      el.style.cssText = [
+        `left:${(Math.random() * 100).toFixed(1)}%`,
+        `top:${(Math.random() * 85).toFixed(1)}%`,
+        `width:${size}px`,
+        `height:${size}px`,
+        `--d:${(2.2 + Math.random() * 3.5).toFixed(1)}s`,
+        `--dl:${(Math.random() * 5).toFixed(1)}s`,
+        `--lo:${(0.1 + Math.random() * 0.25).toFixed(2)}`,
+        `--hi:${(0.55 + Math.random() * 0.45).toFixed(2)}`,
+      ].join(';');
+      frag.appendChild(el);
+    }
+    container.appendChild(frag);
+  })();
+
+  // ── LIVE WOOCOMMERCE CATALOG
+  // Pulls every published product from the store's public Store API
+  // and renders it in the landing-page card style. Editing a product
+  // in WP admin (image, price, stock, category) updates this page
+  // automatically — nothing here is hand-maintained.
+  (function () {
+    const STORE = 'https://silentpeak.us';
+    const grid = document.getElementById('productsGrid');
+    const filterBar = document.getElementById('filterBar');
+    const countEl = document.getElementById('catalogCount');
+    let allProducts = [];
+
+    // Skeleton placeholders while loading
+    for (let i = 0; i < 8; i++) {
+      const sk = document.createElement('div');
+      sk.className = 'product-card skeleton';
+      sk.innerHTML = '<div class="product-img-wrap"></div>' +
+        '<div class="sk-line"></div><div class="sk-line short"></div>';
+      grid.appendChild(sk);
+    }
+
+    const formatPrice = (prices) => {
+      const minor = Math.pow(10, prices.currency_minor_unit || 2);
+      const fmt = (v) => (prices.currency_prefix || prices.currency_symbol || '$') +
+        (parseInt(v, 10) / minor).toFixed(prices.currency_minor_unit || 2).replace(/\.00$/, '');
+      const onSale = prices.regular_price && prices.regular_price !== prices.price;
+      return onSale
+        ? '<del>' + fmt(prices.regular_price) + '</del>' + fmt(prices.price)
+        : fmt(prices.price);
+    };
+
+    const plainText = (html, max) => {
+      const div = document.createElement('div');
+      div.innerHTML = html || '';
+      let text = (div.textContent || '').trim();
+      if (max && text.length > max) text = text.slice(0, max).replace(/\s+\S*$/, '') + '…';
+      return text;
+    };
+
+    const render = (products) => {
+      grid.innerHTML = '';
+      if (!products.length) {
+        grid.innerHTML = '<div class="catalog-message">No compounds found in this category.</div>';
+        return;
+      }
+      products.forEach((p, i) => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        const img = (p.images && p.images.length) ? p.images[0] : null;
+        const cat = (p.categories && p.categories.length) ? p.categories[0].name : 'Research';
+        const tagClass = i % 2 ? 'tag-indigo' : 'tag-blue';
+        const desc = plainText(p.short_description || p.description, 150);
+        const cartBtn = p.is_in_stock === false
+          ? '<span class="btn-cart disabled">Out of Stock</span>'
+          : '<a class="btn-cart" href="' + STORE + '/cart/?add-to-cart=' + p.id + '">Add to Cart</a>';
+
+        card.innerHTML =
+          '<a class="product-img-wrap" href="' + p.permalink + '">' +
+            (img ? '<img src="' + img.src + '" alt="" loading="lazy">' : '') +
+          '</a>' +
+          '<div class="product-card-body">' +
+            '<div class="product-cat"><span class="tag ' + tagClass + '"></span></div>' +
+            '<div class="product-name"><a href="' + p.permalink + '"></a></div>' +
+            '<p class="product-desc"></p>' +
+          '</div>' +
+          '<div class="product-card-foot">' +
+            '<span class="product-price">' + formatPrice(p.prices) + '</span>' +
+            cartBtn +
+          '</div>';
+
+        // Text content set safely (names/descriptions may contain entities)
+        card.querySelector('.tag').textContent = cat;
+        card.querySelector('.product-name a').textContent = plainText(p.name);
+        card.querySelector('.product-desc').textContent = desc;
+        const imgEl = card.querySelector('img');
+        if (imgEl) imgEl.alt = plainText(p.name);
+        grid.appendChild(card);
+      });
+      countEl.textContent = products.length + ' compound' + (products.length === 1 ? '' : 's');
+    };
+
+    const buildFilters = () => {
+      const cats = new Map();
+      allProducts.forEach(p => (p.categories || []).forEach(c => cats.set(c.id, c.name)));
+      cats.forEach((name, id) => {
+        const chip = document.createElement('button');
+        chip.className = 'chip';
+        chip.dataset.cat = id;
+        chip.textContent = name;
+        filterBar.insertBefore(chip, countEl);
+      });
+      filterBar.addEventListener('click', (e) => {
+        const chip = e.target.closest('.chip');
+        if (!chip) return;
+        filterBar.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        const cat = chip.dataset.cat;
+        render(cat === '*'
+          ? allProducts
+          : allProducts.filter(p => (p.categories || []).some(c => String(c.id) === cat)));
+      });
+    };
+
+    fetch(STORE + '/wp-json/wc/store/v1/products?per_page=100&status=publish')
+      .then(res => { if (!res.ok) throw new Error(res.status); return res.json(); })
+      .then(products => {
+        allProducts = products;
+        buildFilters();
+        render(allProducts);
+      })
+      .catch(() => {
+        grid.innerHTML = '<div class="catalog-message">The catalog could not be loaded right now.<br>' +
+          'You can browse products directly at <a href="' + STORE + '/shop/">silentpeak.us/shop</a>.</div>';
+        countEl.textContent = '';
+      });
+  })();
+</script>
+
