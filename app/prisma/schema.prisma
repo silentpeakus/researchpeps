@@ -1,0 +1,112 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum Sex {
+  MALE
+  FEMALE
+}
+
+enum CompoundCategory {
+  AAS_INJECTABLE
+  AAS_ORAL
+  PEPTIDE
+  HGH
+  SARM
+  SUPPLEMENT
+  MEDICATION
+  OTHER
+}
+
+enum Goal {
+  TRT_OPTIMIZATION
+  BODYBUILDING
+  LONGEVITY
+  WEIGHT_LOSS
+  PERFORMANCE
+  GENERAL_HEALTH
+}
+
+model User {
+  id            String          @id @default(cuid())
+  email         String          @unique
+  name          String?
+  dateOfBirth   DateTime?
+  sex           Sex?
+  heightCm      Float?
+  weightKg      Float?
+  goal          Goal?
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  protocolItems ProtocolItem[]
+  labPanels     LabPanel[]
+}
+
+// Catalog of compounds the app knows about (used to drive the rule engine).
+model Compound {
+  id            String            @id @default(cuid())
+  name          String            @unique
+  category      CompoundCategory
+  defaultUnit   String // e.g. "mg/week", "mcg/day", "IU/day"
+  notes         String?
+  protocolItems ProtocolItem[]
+}
+
+// A single entry in a user's current protocol (e.g. "Testosterone Cypionate, 250mg/week").
+model ProtocolItem {
+  id          String    @id @default(cuid())
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  compoundId  String
+  compound    Compound  @relation(fields: [compoundId], references: [id])
+  doseValue   Float
+  doseUnit    String
+  frequency   String? // e.g. "weekly", "daily", "EOD"
+  route       String? // e.g. "IM", "SubQ", "oral"
+  startDate   DateTime?
+  endDate     DateTime? // null = ongoing
+  notes       String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+// Catalog of biomarkers the app knows how to interpret.
+model Biomarker {
+  id               String       @id @default(cuid())
+  code             String       @unique // e.g. "HCT", "HDL", "ALT"
+  name             String // e.g. "Hematocrit"
+  unit             String
+  category         String // e.g. "CBC", "Lipid Panel", "Liver", "Hormone"
+  rangeLowMale     Float?
+  rangeHighMale    Float?
+  rangeLowFemale   Float?
+  rangeHighFemale  Float?
+  description      String? // plain-language "what is this" explanation
+  labResults       LabResult[]
+}
+
+// One uploaded/entered set of labs, taken on a given date.
+model LabPanel {
+  id        String      @id @default(cuid())
+  userId    String
+  user      User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  date      DateTime
+  source    String? // e.g. "Quest", "LabCorp", "manual entry"
+  notes     String?
+  createdAt DateTime    @default(now())
+  results   LabResult[]
+}
+
+model LabResult {
+  id          String    @id @default(cuid())
+  labPanelId  String
+  labPanel    LabPanel  @relation(fields: [labPanelId], references: [id], onDelete: Cascade)
+  biomarkerId String
+  biomarker   Biomarker @relation(fields: [biomarkerId], references: [id])
+  value       Float
+}
